@@ -4,6 +4,7 @@
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="facebook_app_id">1360905357355830</string>
+    <string name="server_client_id">167959611548-faftd4u7teaqg4amts13sdlmqimjn5u6.apps.googleusercontent.com</string>
 
 
     <string-array name="device_type">

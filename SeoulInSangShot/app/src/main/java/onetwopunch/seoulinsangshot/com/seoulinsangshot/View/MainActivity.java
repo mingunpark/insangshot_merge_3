@@ -30,7 +30,7 @@ import onetwopunch.seoulinsangshot.com.seoulinsangshot.DataManager.Area_DataMana
 import onetwopunch.seoulinsangshot.com.seoulinsangshot.Model.Model_Test;
 import onetwopunch.seoulinsangshot.com.seoulinsangshot.R;
 
-public class MainActivity extends AppCompatActivity implements View.OnTouchListener {
+public class MainActivity extends AppCompatActivity implements View.OnTouchListener, CustomDialog.OnCompleteListener  {
 
     Button btn_test;
 
@@ -38,9 +38,11 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     Intent album;
     Intent notify;
 
+    CustomDialog customDialog=new CustomDialog();
 
 
-    //avf를 위한 부분
+
+    //avf를 위한 부분Rmx?
     AdapterViewFlipper avf;
     ImageView mainImage;
     TextView hitTv;
@@ -77,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                     startActivity(notify);
                     return true;
                 case R.id.navigation_login:
-                    CustomDialog customDialog=new CustomDialog();
+
                     FragmentManager fm = getSupportFragmentManager();
                     customDialog.show(fm, "Login Dialog");
                     return true;
@@ -87,6 +89,16 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         }
 
     };
+
+    @Override
+    public void onInputedData(String name, String email) {
+
+        BaseActivity.email=email;
+        BaseActivity.name=name;
+
+        System.out.println("name, email"+BaseActivity.name+" , "+BaseActivity.email);
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
