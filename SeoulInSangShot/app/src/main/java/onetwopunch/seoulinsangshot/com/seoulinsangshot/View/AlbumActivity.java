@@ -24,11 +24,13 @@ import onetwopunch.seoulinsangshot.com.seoulinsangshot.Controller.CoverFlowAdapt
 import onetwopunch.seoulinsangshot.com.seoulinsangshot.Model.Model_Image;
 import onetwopunch.seoulinsangshot.com.seoulinsangshot.R;
 
-public class AlbumActivity extends AppCompatActivity {
+public class AlbumActivity extends AppCompatActivity implements CustomDialog.OnCompleteListener {
 
     Intent home;
     Intent primary;
     Intent notify;
+
+    CustomDialog customDialog=new CustomDialog();
 
 
     int BestCount =0 ;
@@ -55,7 +57,7 @@ public class AlbumActivity extends AppCompatActivity {
                     startActivity(notify);
                     return true;
                 case R.id.navigation_login:
-                    CustomDialog customDialog=new CustomDialog();
+
                     FragmentManager fm = getSupportFragmentManager();
                     customDialog.show(fm, "Login Dialog");
                     return true;
@@ -64,6 +66,16 @@ public class AlbumActivity extends AppCompatActivity {
         }
 
     };
+
+    @Override
+    public void onInputedData(String name, String email) {
+
+        BaseActivity.email=email;
+        BaseActivity.name=name;
+
+        System.out.println("name, email"+BaseActivity.name+" , "+BaseActivity.email);
+
+    }
 
     private FeatureCoverFlow mCoverFlow;
     private CoverFlowAdapter mAdapter;

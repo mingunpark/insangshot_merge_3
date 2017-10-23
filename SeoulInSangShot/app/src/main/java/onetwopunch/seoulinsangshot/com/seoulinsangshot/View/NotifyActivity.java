@@ -12,12 +12,12 @@ import android.view.MenuItem;
 import onetwopunch.seoulinsangshot.com.seoulinsangshot.Controller.BottomNavigationViewHelper;
 import onetwopunch.seoulinsangshot.com.seoulinsangshot.R;
 
-public class NotifyActivity extends AppCompatActivity {
+public class NotifyActivity extends AppCompatActivity implements CustomDialog.OnCompleteListener{
 
     Intent home;
     Intent primary;
     Intent album;
-
+    CustomDialog customDialog=new CustomDialog();
 
     private BottomNavigationView navigation;
 
@@ -40,7 +40,7 @@ public class NotifyActivity extends AppCompatActivity {
                     startActivity(album);
                     return true;
                 case R.id.navigation_login:
-                    CustomDialog customDialog=new CustomDialog();
+
                     FragmentManager fm = getSupportFragmentManager();
                     customDialog.show(fm, "Login Dialog");
                     return true;
@@ -52,6 +52,16 @@ public class NotifyActivity extends AppCompatActivity {
         }
 
     };
+
+    @Override
+    public void onInputedData(String name, String email) {
+
+        BaseActivity.email=email;
+        BaseActivity.name=name;
+
+        System.out.println("name, email"+BaseActivity.name+" , "+BaseActivity.email);
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

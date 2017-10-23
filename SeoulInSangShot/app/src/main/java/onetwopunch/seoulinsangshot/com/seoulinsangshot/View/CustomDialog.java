@@ -135,7 +135,7 @@ public class CustomDialog extends DialogFragment implements GoogleApiClient.OnCo
                             email = object.getString("email");       // 이메일
                             name = object.getString("name");         // 이름
 
-
+                            BaseActivity.isLogined=2;
 
                             Log.d("TAG","페이스북 이메일 -> " + email);
                             Log.d("TAG","페이스북 이름 -> " + name);
@@ -237,9 +237,9 @@ public class CustomDialog extends DialogFragment implements GoogleApiClient.OnCo
             GoogleSignInAccount acct = result.getSignInAccount();
             email=acct.getEmail();
             name=acct.getDisplayName();
+            BaseActivity.isLogined=1;
             updateUI(true);
             mCallback.onInputedData(email,name);
-            //dismiss();
         } else {
             // Signed out, show unauthenticated UI.
             updateUI(false);
@@ -282,6 +282,7 @@ public class CustomDialog extends DialogFragment implements GoogleApiClient.OnCo
                         // [START_EXCLUDE]
                         email=null;
                         name=null;
+                        BaseActivity.isLogined=0;
                         mCallback.onInputedData(email,name);
                         updateUI(false);
                         // [END_EXCLUDE]

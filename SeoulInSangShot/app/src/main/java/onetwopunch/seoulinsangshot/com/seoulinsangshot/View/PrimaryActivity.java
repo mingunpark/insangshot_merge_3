@@ -19,7 +19,7 @@ import onetwopunch.seoulinsangshot.com.seoulinsangshot.R;
 import onetwopunch.seoulinsangshot.com.seoulinsangshot.View.Fragment.Fragment_Show_Area;
 import onetwopunch.seoulinsangshot.com.seoulinsangshot.View.Fragment.Fragment_Show_Theme;
 
-public class PrimaryActivity extends AppCompatActivity {
+public class PrimaryActivity extends AppCompatActivity implements CustomDialog.OnCompleteListener {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
@@ -31,7 +31,7 @@ public class PrimaryActivity extends AppCompatActivity {
     Intent home;
     Intent album;
     Intent notify;
-
+    CustomDialog customDialog=new CustomDialog();
 
     private BottomNavigationView navigation;
 
@@ -56,7 +56,7 @@ public class PrimaryActivity extends AppCompatActivity {
                     startActivity(notify);
                     return true;
                 case R.id.navigation_login:
-                    CustomDialog customDialog=new CustomDialog();
+
                     FragmentManager fm = getSupportFragmentManager();
                     customDialog.show(fm, "Login Dialog");
                     return true;
@@ -65,6 +65,16 @@ public class PrimaryActivity extends AppCompatActivity {
         }
 
     };
+
+    @Override
+    public void onInputedData(String name, String email) {
+
+        BaseActivity.email=email;
+        BaseActivity.name=name;
+
+        System.out.println("name, email"+BaseActivity.name+" , "+BaseActivity.email);
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
